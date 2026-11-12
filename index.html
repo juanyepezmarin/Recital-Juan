@@ -50,7 +50,7 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
 /* mobile order: recital, programa, flyer, ideas, quiz */
 @media (max-width:1079px){
   .col{display:contents}
-  #w-recital{order:1}#w-walkman{order:2}#w-flyer{order:3}#w-ideas{order:4}#w-quiz{order:5}
+  #w-recital{order:1}#w-walkman{order:2}#w-quiz{order:3}#w-flyer{order:4}#w-ideas{order:5}
 }
 
 /* window */
@@ -146,6 +146,18 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
 .meter{height:20px;border:2px solid;border-color:var(--sh) var(--hi) var(--hi) var(--sh);background:#fff;margin:8px 0}
 .meter div{height:100%;width:0;background:repeating-linear-gradient(90deg,var(--navy) 0 10px,transparent 10px 13px);transition:width .9s steps(12)}
 
+/* rsvp */
+.lbl{display:block;font-size:20px;margin:12px 0 4px;color:var(--ink)}
+.field{width:100%;font-family:var(--pix);font-size:22px;padding:8px 10px;background:#fff;color:var(--ink);border:2px solid;border-color:var(--sh) var(--hi) var(--hi) var(--sh);border-radius:0;min-height:46px}
+textarea.field{resize:vertical}
+.fs{border:0;padding:0;margin:0}
+.opt{justify-content:flex-start;width:100%;cursor:pointer;text-align:left}
+.opt input{width:20px;height:20px;accent-color:var(--navy);flex:none}
+.opt:has(input:checked){background:var(--yellow)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px}
+.err{color:var(--red);font-size:20px;min-height:0;margin-top:8px}
+.err:empty{display:none}
+.hint{font-size:17px;color:#333;margin-top:8px}
 /* popup + toast */
 .popup{position:fixed;z-index:3000;left:50%;bottom:16px;transform:translateX(-50%);width:min(400px,calc(100% - 24px))}
 .popup .body{display:flex;gap:12px;align-items:flex-start}
@@ -175,7 +187,7 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
   <button class="icon" data-open="w-walkman" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="1" width="12" height="14" fill="#c3c3c3"/><rect x="3" y="2" width="10" height="5" fill="#bfd08a"/><circle cx="8" cy="11" r="3" fill="#0a1470"/><circle cx="8" cy="11" r="1" fill="#ffe600"/></svg><span>Programa</span></button>
   <button class="icon" data-open="w-flyer" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="1" width="12" height="14" fill="#fff"/><rect x="3" y="2" width="10" height="7" fill="#3a3040"/><rect x="3" y="2" width="8" height="2" fill="#8f3535"/><rect x="3" y="11" width="6" height="1" fill="#8f3535"/><rect x="3" y="13" width="8" height="1" fill="#111"/></svg><span>Flyer</span></button>
   <button class="icon" data-open="w-ideas" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="9" r="6" fill="#e0221b"/><circle cx="8" cy="9" r="4" fill="#fff"/><rect x="8" y="6" width="1" height="3" fill="#111"/><rect x="8" y="9" width="3" height="1" fill="#111"/><rect x="2" y="1" width="3" height="3" fill="#e0221b"/><rect x="11" y="1" width="3" height="3" fill="#e0221b"/></svg><span>Llegar a tiempo</span></button>
-  <button class="icon" data-open="w-quiz" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="14" height="14" fill="#ffe600"/><rect x="6" y="3" width="4" height="2" fill="#111"/><rect x="10" y="5" width="2" height="2" fill="#111"/><rect x="8" y="7" width="2" height="2" fill="#111"/><rect x="7" y="9" width="2" height="2" fill="#111"/><rect x="7" y="12" width="2" height="2" fill="#111"/></svg><span>¿Música?</span></button>
+  <button class="icon" data-open="w-quiz" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="10" fill="#fff"/><path d="M1 3 L8 9 L15 3" fill="none" stroke="#0a1470" stroke-width="1.5"/><rect x="11" y="9" width="4" height="4" fill="#e0221b"/></svg><span>Confirmar</span></button>
   <button class="icon" id="iconNo" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="14" height="14" fill="#e0221b"/><rect x="4" y="4" width="2" height="2" fill="#fff"/><rect x="10" y="4" width="2" height="2" fill="#fff"/><rect x="6" y="6" width="4" height="4" fill="#fff"/><rect x="4" y="10" width="2" height="2" fill="#fff"/><rect x="10" y="10" width="2" height="2" fill="#fff"/></svg><span>No_tocar.exe</span></button>
 </nav>
 
@@ -208,7 +220,7 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
         <button type="button" data-open="w-walkman">Programa</button>
         <button type="button" data-open="w-flyer">Flyer</button>
         <button type="button" data-open="w-ideas">Llegar a tiempo</button>
-        <button type="button" data-open="w-quiz">Quiz</button>
+        <button type="button" data-open="w-quiz">Confirmar</button>
       </nav>
       <div class="body">
         <div class="hero-img"><div class="sun"></div><div class="grid"></div><h3 data-alt>Fecha única</h3><img class="px" src="data:image/gif;base64,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" alt="" width="72" height="72"></div>
@@ -228,14 +240,39 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
         <div class="row">
           <button class="b95 y" id="noclick" type="button">No hagas clic aquí</button>
           <button class="b95" id="copy" type="button">Copiar datos</button>
+          <button class="b95" type="button" data-open="w-quiz">¿Vas a ir? Confírmalo</button>
         </div>
         <p class="note" id="warn">Recital de grado · Escuela Municipal de Arte.</p>
       </div>
     </section>
 
     <section class="win" id="w-quiz" aria-labelledby="t-quiz">
-      <div class="tbar"><span class="ico" aria-hidden="true">?</span><h2 id="t-quiz">¿Qué tanto te gusta la música?</h2><button class="x" type="button" aria-label="Cerrar ventana">X</button></div>
-      <div class="body" id="quizBox" aria-live="polite"></div>
+      <div class="tbar"><span class="ico" aria-hidden="true">✉</span><h2 id="t-quiz">¿Quién eres? — Confirmar asistencia</h2><button class="x" type="button" aria-label="Cerrar ventana">X</button></div>
+      <div class="body" id="rsvpBox">
+        <form id="rsvp" novalidate>
+          <p class="qtext">Identifícate, visitante. Juan quiere saber quién anda por aquí.</p>
+          <label class="lbl" for="f-name">Tu nombre</label>
+          <input class="field" id="f-name" name="nombre" type="text" autocomplete="name" maxlength="80" placeholder="Ej: Stefany" required>
+          <fieldset class="fs">
+            <legend class="lbl">¿Vas a ir el martes 17 a las 4 pm?</legend>
+            <div class="opts">
+              <label class="b95 opt"><input type="radio" name="attend" value="Sí voy" required> Sí, ahí estaré</label>
+              <label class="b95 opt"><input type="radio" name="attend" value="Tal vez"> Tal vez (lo voy a intentar)</label>
+              <label class="b95 opt"><input type="radio" name="attend" value="No puedo"> No puedo esta vez</label>
+            </div>
+          </fieldset>
+          <div id="plusWrap" hidden>
+            <label class="lbl" for="f-plus">¿Cuántas personas van contigo? (además de ti)</label>
+            <select class="field" id="f-plus" name="guests"><option>0</option><option>1</option><option>2</option><option>3</option><option>4 o más</option></select>
+          </div>
+          <label class="lbl" for="f-msg">Un mensaje para Juan (opcional)</label>
+          <textarea class="field" id="f-msg" name="message" rows="3" maxlength="500" placeholder="Ánimo, rómpete una uña (no literal)"></textarea>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" id="rsvpErr" role="alert"></p>
+          <div class="row"><button class="b95 y" id="rsvpSend" type="submit">Enviar a Juan</button></div>
+          <p class="hint">Tu respuesta le llega directo a Juan. Solo se envía lo que escribas aquí.</p>
+        </form>
+      </div>
     </section>
   </div>
 
@@ -398,27 +435,36 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
     if(playing){joke();timer=setInterval(step,1000);}else{clearInterval(timer);$('joke').textContent='Pausado. Como mi motivación un lunes.';}}
   playB.addEventListener('click',toggle);$('next').addEventListener('click',()=>load(ti+1,false));$('prev').addEventListener('click',()=>load(pos>3?ti:ti-1,false));render();
 
-  // quiz
-  const Q=[
-    {q:'Suena una canción que te gusta en el supermercado. Tú:',o:[['Ni me doy cuenta',0],['La tarareo bajito',2],['Concierto privado en el pasillo de los cereales',3]]},
-    {q:'¿Cuántas playlists tienes?',o:[['Una. Se llama "Mix 1"',0],['Varias, según el estado de ánimo',2],['Una por día de la semana y otra para los martes de recital',3]]},
-    {q:'Te dicen "recital de guitarra clásica, martes, 4 pm". Piensas:',o:[['¿Va a haber comida?',1],['Suena bien, ahí estaré',2],['Ya estoy ahí. Llegué ayer.',3]]}
-  ];
-  const R=[
-    {max:2,h:'Oyente casual',p:'La música te acompaña de fondo, como el ruido de la nevera. Ven el martes: un recital en vivo puede cambiarte la tarde.'},
-    {max:5,h:'Fan de audífonos',p:'No sales sin audífonos y tienes opiniones sobre el volumen ideal. El martes te toca subirle a la vida real.'},
-    {max:7,h:'Melómano funcional',p:'Sabes la diferencia entre un vals y un 4/4 y no te da pena decirlo. Te vas a reír cuando suene Zelda.'},
-    {max:99,h:'Vives en compás de 3/4',p:'Tu corazón late en tiempo de vals y ya te sabes el programa. Siéntate adelante y aplaude al final, no en medio.'}
-  ];
-  const qb=$('quizBox');let qi=0,sc=0;
-  const bars=()=>'<div class="qbar">'+Q.map((_,i)=>'<i class="'+(i<=qi?'on':'')+'"></i>').join('')+'</div>';
-  function showQ(){const it=Q[qi];qb.innerHTML=bars()+'<p class="qtext">'+(qi+1)+'/3 · '+it.q+'</p><div class="opts">'+it.o.map((o,i)=>'<button class="b95" type="button" data-i="'+i+'">○ '+o[0]+'</button>').join('')+'</div>';
-    qb.querySelectorAll('[data-i]').forEach(b=>b.addEventListener('click',()=>{sc+=it.o[+b.dataset.i][1];qi++;qi<Q.length?showQ():showR();}));}
-  function showR(){const r=R.find(x=>sc<=x.max),pct=Math.round(sc/9*100);
-    qb.innerHTML='<div class="res-top"><img class="px" src="'+NOTE_GIF+'" alt="Nota musical saltando" width="72" height="72"><div><div class="score">'+pct+'%</div><p>Amor por la música</p></div></div><div class="meter"><div id="mtr"></div></div><p class="qtext" style="margin:6px 0">'+r.h+'</p><p>'+r.p+'</p><div class="row"><button class="b95 y" id="again" type="button">Repetir</button><button class="b95" type="button" id="toProg">Ver el programa</button></div>';
-    requestAnimationFrame(()=>{const m=$('mtr');if(m)m.style.width=pct+'%';});
-    $('again').addEventListener('click',()=>{qi=0;sc=0;showQ();});$('toProg').addEventListener('click',()=>openWin('w-walkman'));}
-  showQ();
+  // ===== Confirmación de asistencia =====
+  // Para que las respuestas te lleguen al correo:
+  // 1) Entra a https://web3forms.com , escribe tu correo y te mandan un "Access Key".
+  // 2) Pega esa clave aquí abajo, entre las comillas.
+  const WEB3FORMS_KEY='PEGA_AQUI_TU_ACCESS_KEY';
+  const form=$('rsvp'),err=$('rsvpErr'),sendB=$('rsvpSend');
+  const attendVal=()=>{const c=form.querySelector('input[name=attend]:checked');return c?c.value:'';};
+  form.querySelectorAll('input[name=attend]').forEach(r=>r.addEventListener('change',()=>{$('plusWrap').hidden=attendVal()==='No puedo';}));
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();err.textContent='';
+    const name=$('f-name').value.trim(),attend=attendVal(),msg=$('f-msg').value.trim(),guests=attend==='No puedo'?'0':$('f-plus').value;
+    if(!name){err.textContent='Falta tu nombre. Los fantasmas no confirman.';$('f-name').focus();return;}
+    if(!attend){err.textContent='Escoge si vas o no. "Depende" no es una opción (bueno, "Tal vez" sí).';return;}
+    if(!WEB3FORMS_KEY||WEB3FORMS_KEY.startsWith('PEGA_')){err.textContent='El formulario todavía no está conectado (falta la clave de Web3Forms). Avísale a Juan por WhatsApp mientras tanto.';return;}
+    sendB.disabled=true;sendB.textContent='Enviando...';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:'Recital: '+name+' — '+attend,from_name:'Página del recital',
+          Nombre:name,'¿Va a ir?':attend,'Acompañantes':guests,Mensaje:msg||'(sin mensaje)',botcheck:form.querySelector('.hp').checked})});
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok||!data.success)throw new Error(data.message||'error');
+      const yes=attend==='Sí voy',maybe=attend==='Tal vez';
+      $('rsvpBox').innerHTML='<div class="res-top"><img class="px" src="'+NOTE_GIF+'" alt="Nota musical saltando" width="72" height="72"><div><p class="qtext" style="margin:0">'+(yes?'¡Anotado, ':maybe?'Anotado como "tal vez", ':'Qué pecado, ')+escapeHtml(name)+'!</p><p>'+(yes?'Te guardamos silla (de plástico, pero con cariño). Martes 17, 4 pm.':maybe?'Te vamos a mirar con esperanza desde el escenario. Martes 17, 4 pm.':'Juan ya lo sabe. Igual te queda la página para escuchar el walkman que no suena.')+'</p></div></div><div class="row"><button class="b95" type="button" id="again">Enviar otra respuesta</button></div>';
+      $('again').addEventListener('click',()=>location.reload());
+    }catch(x){
+      err.textContent='No se pudo enviar. Revisa tu internet e inténtalo otra vez.';
+      sendB.disabled=false;sendB.textContent='Enviar a Juan';
+    }
+  });
+  function escapeHtml(t){return t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 })();
 </script>
 </body>
