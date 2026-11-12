@@ -439,7 +439,7 @@ textarea.field{resize:vertical}
   // Para que las respuestas te lleguen al correo:
   // 1) Entra a https://web3forms.com , escribe tu correo y te mandan un "Access Key".
   // 2) Pega esa clave aquí abajo, entre las comillas.
-  const WEB3FORMS_KEY='PEGA_AQUI_TU_ACCESS_KEY';
+  const WEB3FORMS_KEY='8cdcd4ae-8882-4c77-847b-9cd6fb0a12b2';
   const form=$('rsvp'),err=$('rsvpErr'),sendB=$('rsvpSend');
   const attendVal=()=>{const c=form.querySelector('input[name=attend]:checked');return c?c.value:'';};
   form.querySelectorAll('input[name=attend]').forEach(r=>r.addEventListener('change',()=>{$('plusWrap').hidden=attendVal()==='No puedo';}));
